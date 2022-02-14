@@ -14,14 +14,16 @@ repeat {
     print("1. Первое домашнее задание. 1. Решить квадратное уровнение")
     print("2. Первое домашнее задание. 2. Прямоугольный треугольник")
     print("3. Первое домашнее задание. 3. Рассчитать сумму вклада")
-
+    print()
     print("4. Второе домашнее задание. 1. Проверка на четное число")
     print("5. Второе домашнее задание. 2. Проверка на кратность числу 3")
     print("6. Второе домашнее задание. 3. Выводит массив из 100 чисел")
     print("7. Второе домашнее задание. 4. Массив от 1 до 100 без четных чисел и чисел кратных 3")
     print("8. Второе домашнее задание. 5. Массив чисел Фибоначчи из 50 элементов")
     print("9. Второе домашнее задание. 6. Массив из 100 элементов различными простыми числами")
-
+    print()
+    print("10. Третье домашнее задание. 1. Структуры: SportCar и TrunkCar")
+    print()
     print("0. Выйти из программы")
     print()
     let menuNumber = readDoubleParameter()
@@ -71,6 +73,37 @@ repeat {
         let primes = generatePrimes(count: arrayLength)
         print("Массив из \(primes.count) различных простых чисел")
         print(primes)
+    case 10:
+        print("Инициализация спортивной машины")
+        do {
+            var sportCar = try SportCar(brand: "Subaru", model: "BRZ", yearOfIssue: 2011, trunkVolume: 14)
+            print("Стартовая информация о спортивной машине:")
+            print(sportCar.infoString())
+            try sportCar.action(.runningEngine)
+            try sportCar.action(.openWindow)
+            try sportCar.action(.closeWindow)
+            try sportCar.action(.deservedEngine)
+            try sportCar.action(.loadCargo(10))
+            try sportCar.action(.uploadCargo(10))
+            print(sportCar.infoString())
+
+            var trunkCar = try TrunkCar(brand: "КАМАЗ", model: "54901", yearOfIssue: 2019, trunkVolume: 11946)
+            print()
+            print("Стартовая информация о грузовой машине:")
+            print(trunkCar.infoString())
+            try trunkCar.action(.runningEngine)
+            try trunkCar.action(.openWindow)
+            try trunkCar.action(.closeWindow)
+            try trunkCar.action(.deservedEngine)
+            try trunkCar.action(.loadCargo(4000))
+            try trunkCar.action(.uploadCargo(400))
+            print(trunkCar.infoString())
+        } catch is CarInitError {
+            print("Ошибка инициализации")
+        } catch is CarActionError {
+            print("Ошибка при действии с машиной")
+        }
+
     case 0:
         isRepeat = false
     default:
