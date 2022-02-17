@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum CarAction {
+public enum CarActionV1 {
     case runningEngine, deservedEngine
     case openWindow, closeWindow
     case loadCargo(UInt)
@@ -19,12 +19,10 @@ public enum CarEngineStatus: String {
     case stop = "Заглушен"
 
     mutating func startEngine() {
-        print("Двигатель запущен")
         self = .run
     }
 
     mutating func stopEngine() {
-        print("Двигатель заглушен")
         self = .stop
     }
 }
@@ -34,12 +32,10 @@ public enum CarWindowStatus: String {
     case close = "Закрыто"
 
     mutating func openWindow() {
-        print("Окно открыто")
         self = .open
     }
 
     mutating func closeWindow() {
-        print("Окно закрыто")
         self = .close
     }
 }
@@ -49,14 +45,18 @@ public enum CarInitError: Error {
     case invalidBrand
     case invalidModel
     case invalidCargoVolume
+    case invalidTrailerVolume
+    case invalidBodyVolume
+    case invalidCargoPlatformVolume
 }
 
 public enum CarActionError: Error {
-    case invalidLoadCargoValume
-    case invelidUploadCargoValume
+    case invalidLoadCargoVolume
+    case invalidUploadCargoVolume
+    case invalidCargoLocation
 }
 
-public struct SportCar {
+public struct SportCarStruct {
     let brand: String
     let model: String
     let yearOfIssue: UInt
@@ -92,7 +92,7 @@ public struct SportCar {
         self.trunkVolume = trunkVolume
     }
 
-    mutating func action(_ action: CarAction) throws {
+    mutating func action(_ action: CarActionV1) throws {
         switch action {
         case .runningEngine:
             self.engineStatus.startEngine()
@@ -105,14 +105,14 @@ public struct SportCar {
         case .loadCargo(let cargoVolume):
             guard cargoVolume + self.filledTrunkVolume <= self.trunkVolume else {
                 print("Недостаточно места в багажнике")
-                throw CarActionError.invalidLoadCargoValume
+                throw CarActionError.invalidLoadCargoVolume
             }
             self.filledTrunkVolume += cargoVolume
             print("В багажник загружено \(cargoVolume)")
         case .uploadCargo(let cargoVolume):
             guard Int(self.filledTrunkVolume) - Int(cargoVolume) >= 0 else {
                 print("В багажнике нет столько груза")
-                throw CarActionError.invelidUploadCargoValume
+                throw CarActionError.invalidUploadCargoVolume
             }
             self.filledTrunkVolume -= cargoVolume
             print("Из багажника выгружено \(cargoVolume)")
@@ -133,7 +133,7 @@ public struct SportCar {
     }
 }
 
-public struct TrunkCar {
+public struct TrunkCarStruct {
     let brand: String
     let model: String
     let yearOfIssue: UInt
@@ -164,7 +164,7 @@ public struct TrunkCar {
         self.trunkVolume = trunkVolume
     }
 
-    mutating func action(_ action: CarAction) throws {
+    mutating func action(_ action: CarActionV1) throws {
         switch action {
         case .runningEngine:
             self.engineStatus.startEngine()
@@ -177,14 +177,14 @@ public struct TrunkCar {
         case .loadCargo(let cargoVolume):
             guard cargoVolume + self.filledTrunkVolume <= self.trunkVolume else {
                 print("Недостаточно места в кузову")
-                throw CarActionError.invalidLoadCargoValume
+                throw CarActionError.invalidLoadCargoVolume
             }
             self.filledTrunkVolume += cargoVolume
             print("В кузов загружено \(cargoVolume)")
         case .uploadCargo(let cargoVolume):
             guard Int(self.filledTrunkVolume) - Int(cargoVolume) >= 0 else {
                 print("В кузове нет столько груза")
-                throw CarActionError.invelidUploadCargoValume
+                throw CarActionError.invalidUploadCargoVolume
             }
             self.filledTrunkVolume -= cargoVolume
             print("Из багажника выгружено \(cargoVolume)")
