@@ -24,6 +24,8 @@ repeat {
     print()
     print("10. Третье домашнее задание. 1. Структуры: SportCar и TrunkCar")
     print()
+    print("11. Четвертое домашнее задание. 1. Классы: SportCar и TrunkCar")
+    print()
     print("0. Выйти из программы")
     print()
     let menuNumber = readDoubleParameter()
@@ -76,7 +78,7 @@ repeat {
     case 10:
         print("Инициализация спортивной машины")
         do {
-            var sportCar = try SportCar(brand: "Subaru", model: "BRZ", yearOfIssue: 2011, trunkVolume: 14)
+            var sportCar = try SportCarStruct(brand: "Subaru", model: "BRZ", yearOfIssue: 2011, trunkVolume: 14)
             print("Стартовая информация о спортивной машине:")
             print(sportCar.infoString())
             try sportCar.action(.runningEngine)
@@ -87,7 +89,7 @@ repeat {
             try sportCar.action(.uploadCargo(10))
             print(sportCar.infoString())
 
-            var trunkCar = try TrunkCar(brand: "КАМАЗ", model: "54901", yearOfIssue: 2019, trunkVolume: 11946)
+            var trunkCar = try TrunkCarStruct(brand: "КАМАЗ", model: "54901", yearOfIssue: 2019, trunkVolume: 11946)
             print()
             print("Стартовая информация о грузовой машине:")
             print(trunkCar.infoString())
@@ -103,7 +105,53 @@ repeat {
         } catch is CarActionError {
             print("Ошибка при действии с машиной")
         }
+    case 11:
+        print("Инициализация спортивной машины")
+        do {
+            let sportCar = try SportCar(
+                brand: "Subaru",
+                model: "BRZ",
+                yearOfIssue: 2011,
+                trunkVolume: 14)
 
+            print("Стартовая информация о спортивной машине:")
+            print(sportCar.info())
+            print()
+            try sportCar.action(.runEngine)
+            try sportCar.action(.openWindow)
+            try sportCar.action(.closeWindow)
+            try sportCar.action(.stopEngine)
+            try sportCar.action(.loadCargo(10, .trunk))
+            try sportCar.action(.uploadCargo(10, .trunk))
+            print()
+            print(sportCar.info())
+
+            let trunkCar = try TrunkCar(
+                brand: "КАМАЗ",
+                model: "54901",
+                yearOfIssue: 2019,
+                trailerVolume: 1000,
+                bodyVolume: 2000)
+
+            print()
+            print("Стартовая информация о грузовой машине:")
+            print(trunkCar.info())
+            print()
+            try trunkCar.action(.runEngine)
+            try trunkCar.action(.openWindow)
+            try trunkCar.action(.closeWindow)
+            try trunkCar.action(.stopEngine)
+            try trunkCar.action(.loadCargo(1000, .trailer))
+            try trunkCar.action(.loadCargo(1000, .body))
+            try trunkCar.action(.uploadCargo(400, .trailer))
+            print()
+            print(trunkCar.info())
+
+        } catch is CarInitError {
+            print("Ошибка инициализации")
+        } catch is CarActionError {
+            print("Ошибка при действии с машиной")
+        }
     case 0:
         isRepeat = false
     default:
