@@ -26,6 +26,8 @@ repeat {
     print()
     print("11. Четвертое домашнее задание. 1. Классы: SportCar и TrunkCar")
     print()
+    print("12. Пятое домашнее задание. 1. Протоколы")
+    print()
     print("0. Выйти из программы")
     print()
     let menuNumber = readDoubleParameter()
@@ -108,7 +110,7 @@ repeat {
     case 11:
         print("Инициализация спортивной машины")
         do {
-            let sportCar = try SportCar(
+            let sportCar = try SportCarClass(
                 brand: "Subaru",
                 model: "BRZ",
                 yearOfIssue: 2011,
@@ -126,7 +128,7 @@ repeat {
             print()
             print(sportCar.info())
 
-            let trunkCar = try TrunkCar(
+            let trunkCar = try TrunkCarClass(
                 brand: "КАМАЗ",
                 model: "54901",
                 yearOfIssue: 2019,
@@ -152,6 +154,41 @@ repeat {
         } catch is CarActionError {
             print("Ошибка при действии с машиной")
         }
+    case 12:
+        do {
+            var sportCar = try SportCar(brand: "Subaru", model: "BRZ", yearOfIssue: 2011, trunkVolume: 14)
+            print(sportCar)
+            print()
+            try sportCar.action(.runEngine)
+            try sportCar.action(.openWindow)
+            try sportCar.action(.closeWindow)
+            try sportCar.action(.stopEngine)
+            try sportCar.action(.loadCargo(10, .trunk))
+            try sportCar.action(.uploadCargo(10, .trunk))
+            print(sportCar)
+
+            print()
+
+            var trunkCar = try TrunkCar(
+                brand: "КАМАЗ",
+                model: "54901",
+                yearOfIssue: 2019,
+                trailerVolume: 1000)
+            print(trunkCar)
+            print()
+            try trunkCar.action(.runEngine)
+            try trunkCar.action(.openWindow)
+            try trunkCar.action(.closeWindow)
+            try trunkCar.action(.stopEngine)
+            try trunkCar.action(.loadCargo(1000))
+            try trunkCar.action(.uploadCargo(400))
+            print(trunkCar)
+        } catch is CarInitError {
+            print("Ошибка инициализации")
+        } catch is CarActionError {
+            print("Ошибка при действии с машиной")
+        }
+
     case 0:
         isRepeat = false
     default:

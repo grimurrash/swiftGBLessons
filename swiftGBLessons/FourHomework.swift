@@ -22,7 +22,7 @@ public enum CarAction {
     case uploadCargo(Int, CargoLocation = .trunk)
 }
 
-class Car {
+class CarClass {
     fileprivate let brand: String
     fileprivate let model: String
     fileprivate let yearOfIssue: Int
@@ -64,7 +64,7 @@ class Car {
     }
 }
 
-final class SportCar: Car {
+final class SportCarClass: CarClass {
     private let trunkVolume: Int
     private var trunkFullness = 0 {
         didSet {
@@ -119,7 +119,7 @@ final class SportCar: Car {
     }
 }
 
-final class TrunkCar: Car {
+final class TrunkCarClass: CarClass {
 
     private let trailerVolume: Int
     private let bodyVolume: Int
