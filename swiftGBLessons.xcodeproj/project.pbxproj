@@ -13,6 +13,7 @@
 		EA20277227BE3C4800207C78 /* FourHomework.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA20277127BE3C4800207C78 /* FourHomework.swift */; };
 		EA95CDFB27BA7E8B005338DF /* ThreeHomework.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA95CDFA27BA7E8B005338DF /* ThreeHomework.swift */; };
 		EA9849F827C37AB80021EF68 /* FiveHomework.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9849F727C37AB80021EF68 /* FiveHomework.swift */; };
+		EA9849FA27D20E730021EF68 /* SixHomework.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9849F927D20E730021EF68 /* SixHomework.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -35,6 +36,7 @@
 		EA20277127BE3C4800207C78 /* FourHomework.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourHomework.swift; sourceTree = "<group>"; };
 		EA95CDFA27BA7E8B005338DF /* ThreeHomework.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeHomework.swift; sourceTree = "<group>"; };
 		EA9849F727C37AB80021EF68 /* FiveHomework.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiveHomework.swift; sourceTree = "<group>"; };
+		EA9849F927D20E730021EF68 /* SixHomework.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SixHomework.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 				EA95CDFA27BA7E8B005338DF /* ThreeHomework.swift */,
 				EA20277127BE3C4800207C78 /* FourHomework.swift */,
 				EA9849F727C37AB80021EF68 /* FiveHomework.swift */,
+				EA9849F927D20E730021EF68 /* SixHomework.swift */,
 			);
 			path = swiftGBLessons;
 			sourceTree = "<group>";
@@ -161,6 +164,7 @@
 				EA08999F27B280660075892D /* main.swift in Sources */,
 				EA95CDFB27BA7E8B005338DF /* ThreeHomework.swift in Sources */,
 				EA20277227BE3C4800207C78 /* FourHomework.swift in Sources */,
+				EA9849FA27D20E730021EF68 /* SixHomework.swift in Sources */,
 				EA0899AA27B28C890075892D /* TwoHomework.swift in Sources */,
 				EA9849F827C37AB80021EF68 /* FiveHomework.swift in Sources */,
 			);
